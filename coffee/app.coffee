@@ -19,7 +19,10 @@ app.listen 8888
 serverList = [
 	{ name: 'GOOGLE', ip: 'http://74.125.224.83' },
 	{ name: 'YAHOO', ip: 'http://67.195.160.76' },
-	{ name: 'UNKNOWN', ip: 'http://67.195.160.99' }
+	{ name: 'UNKNOWN', ip: 'http://0.0.0.0' },
+	{ name: 'SLASHDOT', ip: 'http://216.34.181.45' },
+	{ name: 'MSNBC', ip: 'http://65.55.53.235' },
+	{ name: 'HACKER NEWS', ip: 'http://174.132.225.106' }
 ]
 
 # check server and return response to client
