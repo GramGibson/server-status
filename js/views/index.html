@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Server Status</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<style>
+		body { font-family: sans-serif; margin: 0; padding: 0; }
+		#header { position:absolute; z-index:2; top:0; left:0; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#666), color-stop(100%,#333));	width: 100%; color: #fff; text-shadow: 0 -1px 0 #000;	border-top: 1px solid rgba(255,255,255,.4); border-bottom: 1px solid #000; }
+		#header h2 { margin: 0; padding: .5em 0 .5em 0; font: bold 1.2em sans-serif; text-align: center; }
+		#wrapper { position: absolute; z-index: 1; top: 43px; bottom: 0; left: 0; width: 100%; background: #fff; overflow: auto; }
+		#scroller {	position:absolute; z-index:1;	width:100%;	padding:0; }
+		#content { font: .8em sans-serif; position: relative; }
+		#content h3 { margin: 0; padding: 0; }
+		.row { table-layout: auto; border-bottom: thin solid #ccc; padding: .6em; font: 1.1em sans-serif; }
+		.row_cell {	display: table-cell; }
+		.status { width: 48px; vertical-align: middle; font: bold 16px sans-serif; text-align: right; padding-right: 8px; }
+		.alive {	color: #2d6f33; }
+		.dead { color: #c00; }
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/app.js"></script>
+	<script src="/iscroll-min.js"></script>
+	<script>document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);</script>
+</head>
+
+<body>
+
+	<div id="header" onclick="javascript:location.reload()">
+		<h2>Server Status</h2>
+	</div>
+	<div id="wrapper">
+		<div id="scroller">
+			<div id="content"></div>
+		</div>
+	</div>
+
+</body>
+</html>
