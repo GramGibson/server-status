@@ -1,8 +1,7 @@
 (function() {
-  var app, checkServer, express, fs, io, request, server_list;
+  var app, checkServer, express, io, request, server_list;
   express = require('express');
   request = require('request');
-  fs = require('fs');
   app = express.createServer();
   io = require('socket.io').listen(app);
   io.enable('browser client minification');

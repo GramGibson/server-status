@@ -1,6 +1,5 @@
 express = require 'express'
 request = require 'request'
-fs = require 'fs'
 
 # create a new instance of express
 app = express.createServer()
