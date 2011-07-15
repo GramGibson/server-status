@@ -17,6 +17,16 @@
     socket.on('response', function(response) {
       return updateStatus(response);
     });
+    $('.button').live('click', function() {
+      var classes, id;
+      classes = $(this).parent().parent().attr('class').split(' ');
+      id = parseInt(classes[1].replace('server_', ''));
+      $(this).replaceWith('<div class="loading"></div>');
+      refreshScroller();
+      return socket.emit('refresh_status', {
+        id: id
+      });
+    });
     return updateStatus = function(response) {
       var el;
       el = $(".server_" + response.id);

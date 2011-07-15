@@ -55,13 +55,22 @@
     });
   };
   io.sockets.on('connection', function(socket) {
-    var server, _i, _len, _results;
+    var server, _i, _len;
     socket.emit('server_list', server_list);
-    _results = [];
     for (_i = 0, _len = server_list.length; _i < _len; _i++) {
       server = server_list[_i];
-      _results.push(checkServer(socket, server));
+      checkServer(socket, server);
     }
-    return _results;
+    return socket.on('refresh_status', function(req) {
+      var server, _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = server_list.length; _i < _len; _i++) {
+        server = server_list[_i];
+        if (server.id === req.id) {
+          _results.push(checkServer(socket, server));
+        }
+      }
+      return _results;
+    });
   });
 }).call(this);

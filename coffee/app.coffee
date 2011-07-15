@@ -37,3 +37,6 @@ checkServer = (socket, server) ->
 io.sockets.on 'connection', (socket) ->
 	socket.emit 'server_list', server_list
 	checkServer(socket, server) for server in server_list
+	
+	socket.on 'refresh_status', (req) ->
+		checkServer(socket, server) for server in server_list when server.id == req.id

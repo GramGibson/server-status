@@ -37,6 +37,18 @@ $ ->
 		# append server statuses as they come in
 		updateStatus response
 	
+	$('.button').live 'click', ->
+		# retrieve server id from parent div, this needs to be cleaned up!
+		classes = $(this).parent().parent().attr('class').split ' '
+		id = parseInt(classes[1].replace 'server_', '')
+		
+		# show loading icon
+		$(this).replaceWith '<div class="loading"></div>'
+		refreshScroller()
+		
+		# refresh server status
+		socket.emit 'refresh_status', { id: id }
+	
 	updateStatus = (response) ->
 		# replace loading icon with status
 		el = $(".server_#{response.id}")
