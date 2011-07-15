@@ -1,7 +1,8 @@
 (function() {
-  var app, checkServer, express, io, request, serverList;
+  var app, checkServer, express, fs, io, request, server_list;
   express = require('express');
   request = require('request');
+  fs = require('fs');
   app = express.createServer();
   io = require('socket.io').listen(app);
   io.enable('browser client minification');
@@ -9,23 +10,29 @@
     return app.use(express.static(__dirname + '/views'));
   });
   app.listen(8888);
-  serverList = [
+  server_list = [
     {
+      id: 0,
       name: 'GOOGLE',
       ip: 'http://74.125.224.83'
     }, {
+      id: 1,
       name: 'YAHOO',
       ip: 'http://67.195.160.76'
     }, {
+      id: 2,
       name: 'UNKNOWN',
       ip: 'http://0.0.0.0'
     }, {
+      id: 3,
       name: 'SLASHDOT',
       ip: 'http://216.34.181.45'
     }, {
+      id: 4,
       name: 'MSNBC',
       ip: 'http://65.55.53.235'
     }, {
+      id: 5,
       name: 'HACKER NEWS',
       ip: 'http://174.132.225.106'
     }
@@ -40,6 +47,7 @@
         status = 'alive';
       }
       return socket.emit('response', {
+        id: server.id,
         name: server.name,
         ip: server.ip,
         status: status
@@ -48,9 +56,10 @@
   };
   io.sockets.on('connection', function(socket) {
     var server, _i, _len, _results;
+    socket.emit('server_list', server_list);
     _results = [];
-    for (_i = 0, _len = serverList.length; _i < _len; _i++) {
-      server = serverList[_i];
+    for (_i = 0, _len = server_list.length; _i < _len; _i++) {
+      server = server_list[_i];
       _results.push(checkServer(socket, server));
     }
     return _results;

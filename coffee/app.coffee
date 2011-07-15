@@ -1,5 +1,6 @@
 express = require 'express'
 request = require 'request'
+fs = require 'fs'
 
 # create a new instance of express
 app = express.createServer()
@@ -16,13 +17,13 @@ app.configure 'development', ->
 app.listen 8888
 
 # list of servers to check
-serverList = [
-	{ name: 'GOOGLE', ip: 'http://74.125.224.83' },
-	{ name: 'YAHOO', ip: 'http://67.195.160.76' },
-	{ name: 'UNKNOWN', ip: 'http://0.0.0.0' },
-	{ name: 'SLASHDOT', ip: 'http://216.34.181.45' },
-	{ name: 'MSNBC', ip: 'http://65.55.53.235' },
-	{ name: 'HACKER NEWS', ip: 'http://174.132.225.106' }
+server_list = [
+	{ id: 0, name: 'GOOGLE', ip: 'http://74.125.224.83' },
+	{ id: 1, name: 'YAHOO', ip: 'http://67.195.160.76' },
+	{ id: 2, name: 'UNKNOWN', ip: 'http://0.0.0.0' },
+	{ id: 3, name: 'SLASHDOT', ip: 'http://216.34.181.45' },
+	{ id: 4, name: 'MSNBC', ip: 'http://65.55.53.235' },
+	{ id: 5, name: 'HACKER NEWS', ip: 'http://174.132.225.106' }
 ]
 
 # check server and return response to client
@@ -30,8 +31,9 @@ checkServer = (socket, server) ->
 	status = 'dead'
 	request uri: server.ip, (error, response, body) ->
 		status = 'alive' if not error?
-		socket.emit 'response', { name: server.name, ip: server.ip, status: status }
+		socket.emit 'response', { id: server.id, name: server.name, ip: server.ip, status: status }
 
 # incoming websockets connections
 io.sockets.on 'connection', (socket) ->
-	checkServer(socket, server) for server in serverList
+	socket.emit 'server_list', server_list
+	checkServer(socket, server) for server in server_list
