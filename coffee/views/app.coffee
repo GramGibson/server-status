@@ -10,20 +10,38 @@ $ ->
 
 	# row template
 	template_table_row = """
-		<div class="row">
-			<div class="row_cell" style="width: 90%;">
+		<div class="row server_${id}">
+			<div class="row_cell" style="width: 99%;">
 				<h3>${name}</h3>
 				<div style="color: #999;">${ip}</div>
 			</div>
-			<div class="row_cell status ${status}">${status}</div>
+			<div class="row_cell status">
+				<div class="loading"></div>
+			</div>
 		</div>
 	"""
-		
+
+	template_status = """
+		<div class="button ${status}">${status}</div>
+	"""
+	
 	# compile + cache template
 	$.template("table_row", template_table_row)
+	$.template("status", template_status)
 
-	# listen for websocket responses
-	socket.on 'response', (response) ->
-		# append server statuses as they come in + refresh the scroller
+	socket.on 'server_list', (response) ->
 		$('#content').append $.tmpl('table_row', response)
 		refreshScroller()
+
+	# listen for websocket responses
+	socket.on 'response', (response) ->	
+		# append server statuses as they come in + refresh the scroller
+		updateStatus response
+	
+	updateStatus = (response) ->
+		el = $(".server_#{response.id}")
+		#el.find('.status').addClass(response.status)
+		el.find('.loading').replaceWith $.tmpl('status', response)
+
+
+
