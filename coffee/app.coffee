@@ -17,12 +17,12 @@ app.listen 8888
 
 # list of servers to check
 server_list = [
-	{ id: 0, name: 'GOOGLE', ip: 'http://74.125.224.83' },
-	{ id: 1, name: 'YAHOO', ip: 'http://67.195.160.76' },
-	{ id: 2, name: 'UNKNOWN', ip: 'http://0.0.0.0' },
-	{ id: 3, name: 'SLASHDOT', ip: 'http://216.34.181.45' },
+	{ id: 0, name: 'Google', ip: 'http://74.125.224.83' },
+	{ id: 1, name: 'Yahoo', ip: 'http://67.195.160.76' },
+	{ id: 2, name: 'Unknown', ip: 'http://0.0.0.0' },
+	{ id: 3, name: 'Slashdot', ip: 'http://216.34.181.45' },
 	{ id: 4, name: 'MSNBC', ip: 'http://65.55.53.235' },
-	{ id: 5, name: 'HACKER NEWS', ip: 'http://174.132.225.106' }
+	{ id: 5, name: 'Hacker News', ip: 'http://174.132.225.106' }
 ]
 
 # check server and return response to client
