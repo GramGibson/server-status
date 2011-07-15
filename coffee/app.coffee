@@ -34,8 +34,12 @@ checkServer = (socket, server) ->
 
 # incoming websockets connections
 io.sockets.on 'connection', (socket) ->
+	# send server list to client
 	socket.emit 'server_list', server_list
+	
+	# check servers
 	checkServer(socket, server) for server in server_list
 	
+	# check server and refresh status
 	socket.on 'refresh_status', (req) ->
 		checkServer(socket, server) for server in server_list when server.id == req.id
