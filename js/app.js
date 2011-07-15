@@ -40,7 +40,8 @@
     var status;
     status = 'dead';
     return request({
-      uri: server.ip
+      uri: server.ip,
+      timeout: 2000
     }, function(error, response, body) {
       if (!(error != null)) {
         status = 'alive';

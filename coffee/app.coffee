@@ -28,7 +28,7 @@ server_list = [
 # check server and return response to client
 checkServer = (socket, server) ->
 	status = 'dead'
-	request uri: server.ip, (error, response, body) ->
+	request { uri: server.ip, timeout: 2000 }, (error, response, body) ->
 		status = 'alive' if not error?
 		socket.emit 'response', { id: server.id, name: server.name, ip: server.ip, status: status }
 
