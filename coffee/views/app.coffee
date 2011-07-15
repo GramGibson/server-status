@@ -20,12 +20,11 @@ $ ->
 			</div>
 		</div>
 	"""
-
 	template_status = """
 		<div class="button ${status}">${status}</div>
 	"""
 	
-	# compile + cache template
+	# compile + cache templates
 	$.template("table_row", template_table_row)
 	$.template("status", template_status)
 
@@ -35,12 +34,12 @@ $ ->
 
 	# listen for websocket responses
 	socket.on 'response', (response) ->	
-		# append server statuses as they come in + refresh the scroller
+		# append server statuses as they come in
 		updateStatus response
 	
 	updateStatus = (response) ->
+		# replace loading icon with status
 		el = $(".server_#{response.id}")
-		#el.find('.status').addClass(response.status)
 		el.find('.loading').replaceWith $.tmpl('status', response)
 
 
