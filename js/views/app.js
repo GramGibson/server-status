@@ -3,7 +3,7 @@
     var refreshScroller, scroller, socket, template_status, template_table_row, updateStatus;
     socket = io.connect('http://localhost:9000/');
     scroller = new iScroll('wrapper');
-    refreshScroller = function(ms, func) {
+    refreshScroller = function() {
       return setTimeout(scroller.refresh(), 0);
     };
     template_table_row = "<div class=\"row server_${id}\">\n	<div class=\"row_cell\" style=\"width: 99%;\">\n		<h3>${name}</h3>\n		<div style=\"color: #999;\">${ip}</div>\n	</div>\n	<div class=\"row_cell status\">\n		<div class=\"loading\"></div>\n	</div>\n</div>";

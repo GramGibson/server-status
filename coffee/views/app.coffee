@@ -6,7 +6,7 @@ $ ->
 	scroller = new iScroll 'wrapper'
 	
 	# refresh scroller
-	refreshScroller = (ms, func) -> setTimeout scroller.refresh(), 0
+	refreshScroller = -> setTimeout scroller.refresh(), 0
 
 	# row template
 	template_table_row = """
