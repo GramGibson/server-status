@@ -13,7 +13,7 @@ app.configure 'development', ->
     app.use express.static __dirname + '/views'
 
 # listen for requests
-app.listen 8888
+app.listen 9000
 
 # list of servers to check
 server_list = [

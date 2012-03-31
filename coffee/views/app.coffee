@@ -1,6 +1,6 @@
 $ ->
 	# open a new websockets connection
-	socket = io.connect 'http://localhost:8888/'
+	socket = io.connect 'http://localhost:9000/'
 
 	# enable fancy scrolling
 	scroller = new iScroll 'wrapper'

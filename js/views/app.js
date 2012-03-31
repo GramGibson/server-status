@@ -1,7 +1,7 @@
 (function() {
   $(function() {
     var refreshScroller, scroller, socket, template_status, template_table_row, updateStatus;
-    socket = io.connect('http://localhost:8888/');
+    socket = io.connect('http://localhost:9000/');
     scroller = new iScroll('wrapper');
     refreshScroller = function(ms, func) {
       return setTimeout(scroller.refresh(), 0);

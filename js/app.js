@@ -8,7 +8,7 @@
   app.configure('development', function() {
     return app.use(express.static(__dirname + '/views'));
   });
-  app.listen(8888);
+  app.listen(9000);
   server_list = [
     {
       id: 0,
@@ -62,10 +62,10 @@
       checkServer(socket, server);
     }
     return socket.on('refresh_status', function(req) {
-      var server, _i, _len, _results;
+      var server, _j, _len2, _results;
       _results = [];
-      for (_i = 0, _len = server_list.length; _i < _len; _i++) {
-        server = server_list[_i];
+      for (_j = 0, _len2 = server_list.length; _j < _len2; _j++) {
+        server = server_list[_j];
         if (server.id === req.id) {
           _results.push(checkServer(socket, server));
         }
