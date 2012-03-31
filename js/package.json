@@ -1,0 +1,13 @@
+{ 
+	"name": "server-status",
+	"version": "0.0.1",
+	"description": "A WebSocket-enabled mobile server status-checker",
+	"author": "Gram Gibson",
+	"main": "./app.js",
+ 	"dependencies": {
+		"express": "*",
+		"request": "*",
+		"socket.io": "*",
+		"underscore": "*"
+	}
+}
